@@ -1,16 +1,18 @@
 <h1 class="text-3xl">Listado de Pokemons</h1>
-<h2 class="text-xl">Página Actual</h2>
+<h2 class="text-xl">Página Actual: {{ currentPage() }}</h2>
 
 <hr class="my-2" />
 
-<!-- @if(!isLoading()) {
-<pokemon-list />
+@if(pokemons()) {
+<pokemon-list [pokemons]="pokemons()" />
 } @else {
 <pokemon-lisk-skeleton />
-} -->
+}
+
+<!-- <pokemon-list [pokemons]="pokemons()" /> -->
 
 <!-- Buttons => Cargar siguientes y anteriores -->
 <div class="flex justify-between">
-  <button class="mt-2">Anteriores</button>
-  <button class="mt-2">Siguientes</button>
+  <button class="mt-2" (click)="loadPokemons(-1)" [disabled]="currentPage() === 1">Anteriores</button>
+  <button class="mt-2" (click)="loadPokemons(+1)">Siguientes</button>
 </div>
